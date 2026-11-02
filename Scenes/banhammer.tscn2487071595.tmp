@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cr5ru1784p03"]
+
+[ext_resource type="Script" uid="uid://dmi8iahlrq2l1" path="res://Scripts/banhammer.gd" id="1_kh472"]
+[ext_resource type="Texture2D" uid="uid://5c7561hw8bqy" path="res://Assets/WalkingBanhammer.png" id="2_kh472"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kh472"]
+size = Vector2(178, 169)
+
+[node name="Banhammer" type="Node2D" unique_id=591839168]
+script = ExtResource("1_kh472")
+
+[node name="Checker" type="Timer" parent="." unique_id=1021058349]
+wait_time = 3.0
+autostart = true
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1910623259]
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1456771768]
+position = Vector2(-0.99999994, 4.5)
+scale = Vector2(1, 0.99999994)
+shape = SubResource("RectangleShape2D_kh472")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=931075190]
+position = Vector2(-0.50000757, 4.0000153)
+scale = Vector2(0.092187494, 0.08750001)
+texture = ExtResource("2_kh472")
+
+[connection signal="timeout" from="Checker" to="." method="_on_checker_timeout"]

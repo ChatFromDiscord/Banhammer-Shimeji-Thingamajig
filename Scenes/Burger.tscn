@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dv8o1ptspfovt"]
+
+[ext_resource type="Script" uid="uid://nfrqoi27acxe" path="res://Scripts/burger.gd" id="1_0vkjg"]
+[ext_resource type="Texture2D" uid="uid://c52jaiac7emyq" path="res://Assets/burger.jpg" id="1_i4fw0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0vkjg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vkjg"]
+
+[node name="Burger" type="Node2D" unique_id=435081717]
+script = ExtResource("1_0vkjg")
+
+[node name="BurgerBody" type="RigidBody2D" parent="." unique_id=524719132]
+physics_material_override = SubResource("PhysicsMaterial_0vkjg")
+contact_monitor = true
+max_contacts_reported = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BurgerBody" unique_id=156275694]
+scale = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_0vkjg")
+
+[node name="Sprite2D" type="Sprite2D" parent="BurgerBody" unique_id=186734009]
+scale = Vector2(0.07812501, 0.10416667)
+texture = ExtResource("1_i4fw0")
+
+[connection signal="body_entered" from="BurgerBody" to="." method="_on_rigid_body_2d_body_entered"]

@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://cr5ru1784p03"]
+
+[ext_resource type="Script" uid="uid://dmi8iahlrq2l1" path="res://Scripts/banhammer.gd" id="1_kh472"]
+[ext_resource type="Texture2D" uid="uid://dd8t7dh1nqdl8" path="res://Assets/RelaxingBanhammer.png" id="2_kh472"]
+[ext_resource type="Texture2D" uid="uid://bu86cxy74bq0w" path="res://Assets/toppng.com-rope-line-png-2560x1440.png" id="3_x47w7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kh472"]
+size = Vector2(178, 169)
+
+[node name="Banhammer" type="Node2D" unique_id=591839168]
+script = ExtResource("1_kh472")
+
+[node name="Rope" type="Sprite2D" parent="." unique_id=1327079892]
+visible = false
+show_behind_parent = true
+position = Vector2(-4.7683716e-07, -106.250015)
+scale = Vector2(1, 0.5)
+texture = ExtResource("3_x47w7")
+
+[node name="Checker" type="Timer" parent="." unique_id=1021058349]
+wait_time = 3.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1910623259]
+input_pickable = true
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1456771768]
+position = Vector2(-0.99999994, 4.5)
+scale = Vector2(1, 0.99999994)
+shape = SubResource("RectangleShape2D_kh472")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=931075190]
+position = Vector2(0, 4.0000043)
+scale = Vector2(0.3984375, 0.43342045)
+texture = ExtResource("2_kh472")
+
+[node name="Timer" type="Timer" parent="." unique_id=1215607808]
+wait_time = 2.0
+
+[node name="SleepTimer" type="Timer" parent="." unique_id=1886119895]
+autostart = true
+
+[node name="SleepAmount" type="Timer" parent="." unique_id=462222893]
+wait_time = 5.0
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=753313407]
+
+[node name="MoveChanceTimer" type="Timer" parent="." unique_id=1157462635]
+autostart = true
+
+[node name="DragTimer" type="Timer" parent="." unique_id=2094968685]
+wait_time = 0.005
+
+[node name="AirChecker" type="Timer" parent="." unique_id=970483822]
+autostart = true
+
+[node name="StableTimer" type="Timer" parent="." unique_id=294618395]
+wait_time = 3.0
+
+[node name="HungerTimer" type="Timer" parent="." unique_id=324976814]
+autostart = true
+
+[node name="EatingTimer" type="Timer" parent="." unique_id=407449741]
+wait_time = 3.0
+
+[connection signal="timeout" from="Checker" to="." method="_on_checker_timeout"]
+[connection signal="body_entered" from="RigidBody2D" to="." method="_on_rigid_body_2d_body_entered"]
+[connection signal="body_exited" from="RigidBody2D" to="." method="_on_rigid_body_2d_body_exited"]
+[connection signal="mouse_entered" from="RigidBody2D" to="." method="_on_rigid_body_2d_mouse_entered"]
+[connection signal="mouse_exited" from="RigidBody2D" to="." method="_on_rigid_body_2d_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SleepTimer" to="." method="_on_sleep_timer_timeout"]
+[connection signal="timeout" from="SleepAmount" to="." method="_on_sleep_amount_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="MoveChanceTimer" to="." method="_on_move_chance_timer_timeout"]
+[connection signal="timeout" from="DragTimer" to="." method="_on_drag_timer_timeout"]
+[connection signal="timeout" from="AirChecker" to="." method="_on_air_checker_timeout"]
+[connection signal="timeout" from="StableTimer" to="." method="_on_stable_timer_timeout"]
+[connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
+[connection signal="timeout" from="EatingTimer" to="." method="_on_eating_timer_timeout"]

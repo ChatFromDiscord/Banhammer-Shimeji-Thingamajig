@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dxmv14erhfkds"]
+
+[ext_resource type="PackedScene" uid="uid://rjxm7u01yoqp" path="res://Scenes/ground.tscn" id="1_f1cnb"]
+[ext_resource type="Script" uid="uid://o2pga2rutje4" path="res://Scripts/camera_2d.gd" id="1_u5ens"]
+[ext_resource type="PackedScene" uid="uid://cr5ru1784p03" path="res://Scenes/banhammer.tscn" id="2_bkwxv"]
+
+[node name="BanhammerHousing" type="Node2D" unique_id=1995238675]
+script = ExtResource("1_u5ens")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=618041907]
+zoom = Vector2(0.386, 0.386)
+
+[node name="Ground" parent="." unique_id=1925210377 instance=ExtResource("1_f1cnb")]
+position = Vector2(3, -2)
+
+[node name="Banhammer" parent="." unique_id=591839168 instance=ExtResource("2_bkwxv")]
+position = Vector2(10, -173)
+
+[connection signal="BurgerSummoned" from="." to="Banhammer" method="_on_banhammer_housing_burger_summoned"]
+[connection signal="ChangingMovement" from="Banhammer" to="Ground" method="_on_banhammer_changing_movement"]
+[connection signal="PickUpable" from="Banhammer" to="." method="_on_banhammer_pick_upable"]
